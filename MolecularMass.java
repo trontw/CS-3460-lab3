@@ -80,7 +80,8 @@ public class MolecularMass {
             total += stack.pop();
             System.out.println("The Total is = "+total);
         }
-        System.out.println("The Total Molecular value is = "+total);
+        input = input.toUpperCase();
+        System.out.println("The Molecular Mass of "+input+" is "+total);
     }
 
     private static void getInput() {
