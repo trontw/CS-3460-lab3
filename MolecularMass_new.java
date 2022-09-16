@@ -41,10 +41,11 @@ public class MolecularMass {
         IntStack stack = new IntStack();
         int index = 0;
         int multp = 0;
-        int temp = 1;
+        int temp = 0;
         int total = 0;
         int var = 0;
-        int sum = 0;
+        int oper = 0;
+        int match = 0;
         while (index < input.length()) {
             char letter = input.charAt(index);
             System.out.println("Index is = "+index);
@@ -62,44 +63,58 @@ public class MolecularMass {
                 stack.push(o); 
                 index++;   
             } else if (letter == '(') {
-                //Use sentinel value of 0 for open parenthesis
-                stack.push(0);
+                stack.push('(');
+                match++;//keep track of open parenthesis
                 index++;
             } else if (letter == ')') {
+                stack.push(')');
                 index++;
-                //We will pop off the stack until we
-                //find a zero (the sentinel)
-                var = stack.pop();
-                sum = var;
-                while (var != 0) { 
-                    System.out.println("var in ) is = "+var);
-                    System.out.println("while pop temp is = "+temp);
-                    if ((temp = stack.pop()) != 0) { 
-                        sum += temp;
-                        System.out.println("sum in TEMP !=0 is "+sum);
-                        //System.out.println("var in TEMP !=0 is "+var);
-                        System.out.println("temp in TEMP !=0 is "+temp);
-                    } else {
-                    System.out.println("SETTING VAR to ZERO");
-                    var = 0;
-                    }
-                }
-                System.out.println("var PUSH in ) is = "+var);
-                System.out.println("sum PUSH in ) is = "+sum);
-                stack.push(sum);
             } else if (letter <= '0'+9 && letter >= '0'+2) {
-                index++;
-                multp = letter - '0';
+                var = letter - '0';
                 System.out.println("Multp is = "+multp);
-                //Pop last Molecular mass value entered before the number
-                //Multiply the last Molecular value 
-                //times the number passed in unless the last character 
-                temp = stack.pop();
-                stack.push(temp*multp);
+                stack.push(var);
+                index++;
             } else if (letter == ' ')
                 System.out.println("INVALID INPUT");
+                //return;
         }
         while (!stack.isEmpty()) {
+            //Pop the first char off the stack.
+            //Next, pop until come to a open p "("
+            //If encounter a number, then multiply that by the total incremented
+            //up to that point.
+            //Multiply the last Molecular value 
+            //times the number passed in unless the last character 
+            //popped off the stack was a ")". If it was a close p, then
+            //pop until reaching the "(" open p.
+            var = stack.pop();
+            index--;
+            //while no open parenthesis or numbers, pop off letters
+            //and add them up then save on the stack
+            while ((var != '(') && (!(var <= '0'+9 && var >= '0'+2))){
+                System.out.println("The Letters are = "+var);
+                    var += stack.pop();
+                    stack.push(var);
+                    index--;
+            }
+            //if we get here, we've either found a "(" or a number
+            //First, check for numbers
+            if (var <= '0'+9 && var >= '0'+2) {
+                total = temp*var;
+                stack.push(total);
+            } //else if (var == '(') {//Next, check for "("
+                //when match = zero, then we know we can pop remainder of stack
+            //    stack.pop();//remove "("
+             
+             //   if (match == 0) {
+             //       temp += stack.pop();
+             //       index--;
+             //   }
+             //   while (temp != '(') {
+             //       temp += stack.pop();
+             //       index--;
+             //   }
+            //}
             total += stack.pop();
             System.out.println("The Total is = "+total);
         }
