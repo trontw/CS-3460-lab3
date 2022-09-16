@@ -47,18 +47,18 @@ public class MolecularMass {
         int sum = 0;
         while (index < input.length()) {
             char letter = input.charAt(index);
-            System.out.println("Index is = "+index);
-            System.out.println("Letter inside While is = "+letter);
+            //System.out.println("Index is = "+index);
+            //System.out.println("Letter inside While is = "+letter);
             if (letter == 'h') {
-                System.out.println("Letter inside 'h' is = "+letter);
+                //System.out.println("Letter inside 'h' is = "+letter);
                 stack.push(h);
                 index++;
             } else if (letter == 'c') {
-                System.out.println("Letter inside 'c' is = "+letter);
+                //System.out.println("Letter inside 'c' is = "+letter);
                 stack.push(c);
                 index++;
             } else if (letter == 'o') {
-                System.out.println("Letter inside 'o' is = "+letter);
+                //System.out.println("Letter inside 'o' is = "+letter);
                 stack.push(o); 
                 index++;   
             } else if (letter == '(') {
@@ -72,25 +72,25 @@ public class MolecularMass {
                 var = stack.pop();
                 sum = var;
                 while (var != 0) { 
-                    System.out.println("var in ) is = "+var);
-                    System.out.println("while pop temp is = "+temp);
+                    //System.out.println("var in ) is = "+var);
+                    //System.out.println("while pop temp is = "+temp);
                     if ((temp = stack.pop()) != 0) { 
                         sum += temp;
-                        System.out.println("sum in TEMP !=0 is "+sum);
+                        //System.out.println("sum in TEMP !=0 is "+sum);
                         //System.out.println("var in TEMP !=0 is "+var);
-                        System.out.println("temp in TEMP !=0 is "+temp);
+                        //System.out.println("temp in TEMP !=0 is "+temp);
                     } else {
-                    System.out.println("SETTING VAR to ZERO");
+                    //System.out.println("SETTING VAR to ZERO");
                     var = 0;
                     }
                 }
-                System.out.println("var PUSH in ) is = "+var);
-                System.out.println("sum PUSH in ) is = "+sum);
+                //System.out.println("var PUSH in ) is = "+var);
+                //System.out.println("sum PUSH in ) is = "+sum);
                 stack.push(sum);
             } else if (letter <= '0'+9 && letter >= '0'+2) {
                 index++;
                 multp = letter - '0';
-                System.out.println("Multp is = "+multp);
+                //System.out.println("Multp is = "+multp);
                 //Pop last Molecular mass value entered before the number
                 //Multiply the last Molecular value 
                 //times the number passed in unless the last character 
@@ -101,7 +101,7 @@ public class MolecularMass {
         }
         while (!stack.isEmpty()) {
             total += stack.pop();
-            System.out.println("The Total is = "+total);
+            //System.out.println("The Total is = "+total);
         }
         input = input.toUpperCase();
         System.out.println("The Molecular Mass of "+input+" is "+total);
