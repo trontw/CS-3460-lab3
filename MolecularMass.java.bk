@@ -108,11 +108,11 @@ public class MolecularMass {
     }
 
     private static void getInput() {
-        System.out.print("Enter the molecule: ");
+        System.out.println("Enter the molecule: ");
         Scanner scan = new Scanner(System.in);//Used to read Raghu's input
         input = scan.nextLine().toLowerCase();
-        //System.out.println("Object is = "+input);
-        //System.out.println("Object size is = "+input.length());
+        System.out.println("Object is = "+input);
+        System.out.println("Object size is = "+input.length());
         scan.close();//close scanner
     }
 }
